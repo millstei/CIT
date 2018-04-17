@@ -128,7 +128,7 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
    
    # pval for G ~ L|T
    nm.y = "G"
-   nms.full = c("T", L.nms )
+   nms.full = c("T", L.nms, C.nms)
    nms.redu = "T"
    pvec[3] = linreg( nms.full, nms.redu, nm.y, mydat )
    
