@@ -128,8 +128,8 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
    
    # pval for G ~ L|T
    nm.y = "G"
-   nms.full = c("T", L.nms )
-   nms.redu = "T"
+   nms.full = c("T", L.nms, C.nms)
+   nms.redu = c("T", C.nms)
    pvec[3] = linreg( nms.full, nms.redu, nm.y, mydat )
    
    mydat1 = na.exclude(mydat)
@@ -163,7 +163,7 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
    
    for(rep in 1:n.resampl){
    	
-	if( rep <= n.perm ){
+      if( rep <= n.perm ){
       	nni  = perm.index[, rep ]
       } else {
       	nni  = sample( 1:nrow(mydat) ) 
@@ -176,7 +176,7 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
       # F for T ~ L|G.n
       mydat1 = na.exclude(mydat)
       tmp = c( "T ~ G.n", C.nms )
-   	  formula = paste( tmp, collapse="+" )
+      formula = paste( tmp, collapse="+" )
       fit_0 = lm( formula, data=mydat1 )
       
       tmp = c( "T ~ G.n", L.nms, C.nms )
@@ -223,7 +223,7 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
       # F for T ~ L|G.n
       mydat1 = na.exclude(mydat)
       tmp = c( "T ~ G.n", C.nms )
-   	  formula = paste( tmp, collapse="+" )
+      formula = paste( tmp, collapse="+" )
       fit_0 = lm( formula, data=mydat1 )
       tmp = c( "T ~ G.n", L.nms, C.nms )
       formula = paste( tmp, collapse=" + " )
@@ -253,7 +253,7 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
        p.perm.GasscLgvnT = NA
        
        nm.y.1 = "T"
-   	   nms.full.1 = c( L.nms, C.nms)
+       nms.full.1 = c( L.nms, C.nms)
        nms.redu.1 = C.nms
        
        nm.y.2 = "T"
@@ -261,8 +261,8 @@ cit.cp = function( L, G, T, C=NULL, n.resampl=50, n.perm=0, perm.index=NULL, rse
        nms.redu.2 = c(L.nms, C.nms)
        
        nm.y.3 = "G"
-       nms.full.3 = c("T", L.nms)
-       nms.redu.3 = "T"
+       nms.full.3 = c("T", L.nms, C.nms)
+       nms.redu.3 = c("T", C.nms)
 
        for( perm in 1:n.perm){ 
        
