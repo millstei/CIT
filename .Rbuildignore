@@ -1,0 +1,8 @@
+.git
+.gitignore
+^.*\.Rproj$
+^\.Rproj\.user$
+Makefile
+^src-.+
+.*\.tar.gz
+.*\.Rcheck
