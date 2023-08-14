@@ -1,8 +1,8 @@
 ######################################################################
-# Program Name: C_CIT_V13_CI.R
+# Program Name: C_CIT_V15.R
 # Purpose: R CIT functions, some including C++ routines
 # Programmer: Joshua Millstein
-# Date: 08/03/23
+# Date: 11/3/16
 #
 # Input:
 #   L: vector or nxp matrix of continuous instrumental variables
