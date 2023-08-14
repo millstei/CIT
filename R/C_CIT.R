@@ -22,10 +22,8 @@
 # Updates: 1) single continuous instrumental double variable, L, or 2) multiple instrumental double variables submitted by a matrix, L, of doubles, assuming that number of columns of L is equal to the number of L variables. 3) Allow permutation index to be added to allow dependencies between tests to be accounted for.
 
 # If trios == NULL, then L is matrix of instrumental variables to be simultaneously included in the model, o.w. L is matrix where a single variable will be indicated by each row of trios.
-# install.packages("/Users/iTeams/Dropbox/scripts/CIT/Rpackage/cit_2.1.tar.gz", repos=NULL)
 ##### Function to compute F test given continuous outcome and full vs reduced sets of covariates
 
-#require( randomForest )
 
 linreg = function( nms.full, nms.redu=NULL, nm.y, mydat ){
     
