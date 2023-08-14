@@ -26,7 +26,6 @@
 ##### Function to compute F test given continuous outcome and full vs reduced sets of covariates
 
 #require( randomForest )
-require(glmnet)
 
 linreg = function( nms.full, nms.redu=NULL, nm.y, mydat ){
     
@@ -1038,29 +1037,29 @@ linregM.nc = function( X, Y, C, ncp=0 ){
 ### The objective is to transform multiple partial mediators into a single mediator, reducing direct effects.
 ### Reducing direct effects will reduce bias in CIT.
 
-pred.m = function( L, M ){
-    
-    #kvars = 10 # approximate number of final variables
-    #fit2 = glmnet( x=M, y=L, alpha=.5 )
-    #df = fit2$df[ fit2$df < (kvars+1) ]
-    #lambda = fit2$lambda[ length(df) ]
-    #pred = predict(fit2, s=lambda, newx=M)
-    #cf = as.matrix( coef(fit2, s=lambda) )
-    
-    M = as.matrix(M)
-    ind = !is.na(L)
-    L = L[ind]
-    M = M[ ind, ]
-    fit.cv = cv.glmnet( x=M, y=L, alpha=.5 )
-    cf = as.matrix( coef(fit.cv, s="lambda.min") )
-    pred = predict(fit.cv, newx=M, s="lambda.min")
-    
-    out.en = vector('list', 2)
-    out.en[[ 1 ]] = pred
-    out.en[[ 2 ]] = cf
-    return(out.en)
-    
-} # End function pred.m
+# pred.m = function( L, M ){
+#     
+#     #kvars = 10 # approximate number of final variables
+#     #fit2 = glmnet( x=M, y=L, alpha=.5 )
+#     #df = fit2$df[ fit2$df < (kvars+1) ]
+#     #lambda = fit2$lambda[ length(df) ]
+#     #pred = predict(fit2, s=lambda, newx=M)
+#     #cf = as.matrix( coef(fit2, s=lambda) )
+#     
+#     M = as.matrix(M)
+#     ind = !is.na(L)
+#     L = L[ind]
+#     M = M[ ind, ]
+#     fit.cv = cv.glmnet( x=M, y=L, alpha=.5 )
+#     cf = as.matrix( coef(fit.cv, s="lambda.min") )
+#     pred = predict(fit.cv, newx=M, s="lambda.min")
+#     
+#     out.en = vector('list', 2)
+#     out.en[[ 1 ]] = pred
+#     out.en[[ 2 ]] = cf
+#     return(out.en)
+#     
+# } # End function pred.m
 
 
 # CIT for binary outcome and permutation results, null is the empirical distribution for pvalues 1-3 and independence for p-value 4.
